@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет фитнес-клуба</title>
+    <style>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            display: inline;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Личный кабинет</h2>
+    <p>Добро пожаловать, {{ user["firstname"] }} {{ user["lastname"] }}!</p>
+    <ul>
+        <form action="/user_page" method="post">
+            <input type="submit" name="my_trains" value="Мои тренировки">
+            <input type="submit" name="choose_train" value="Запись на тренировку">
+        </form>
+        <div>
+            <button onclick="location.href='/gyms_page'">Наши клубы</button>
+        </div>
+        <div>
+            <button onclick="location.href='/trainers_page'">Тренеры</button>
+        </div>
+        <div>
+            <button onclick="location.href='/exercise_page'">Упражнения</button>
+        </div>
+        <form action="/" method="get">
+            <input type="submit" name="exit" value="Выход">
+        </form>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,7 @@
+postgresql://postgres:postgres@localhost:5432/mydatabase
+
+@app.route
+
+bd_url = 'postgresql://postgres:2508@localhost:5432/fitnes'
+
+log_file = py_log.log

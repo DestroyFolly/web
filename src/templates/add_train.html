@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление тренировки</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h2>Добавление тренировки</h2>
+    <form action="/add_train" method="post">
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="dates">Дата:</label>
+        <input type="text" id="dates" name="dates" required>
+
+        <label for="times">Время:</label>
+        <input type="text" id="times" name="times" required>
+
+        <label for="trainer_id">Id-тренера:</label>
+        <input type="number" id="trainer_id" name="trainer_id" required>
+
+        <label for="gym_id">Id-зала:</label>
+        <input type="number" id="gym_id" name="gym_id" required>
+
+
+
+        <input type="submit" value="Зарегистрировать">
+    </form>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация пользователя</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <h2>Регистрация пользователя</h2>
+    <form action="/add_user" method="post">
+        <label for="firstname">Имя:</label>
+        <input type="text" id="firstname" name="firstname" required>
+
+        <label for="lastname">Фамилия:</label>
+        <input type="text" id="lastname" name="lastname" required>
+
+        <label for="phone">Номер телефона:</label>
+        <input type="number" id="phone" name="phone" title="Введите номер телефона без +" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="gender">Пол (m/f):</label>
+        <input type="text" id="gender" name="gender" pattern="[mf]{1}" title="Введите m или f" required>
+
+        <label for="role">Роль (u/t/a):</label>
+        <input type="text" id="role" name="role" pattern="[uta]{1}" title="Введите u, t или a" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="submit" value="Зарегистрировать">
+    </form>
+</body>
+</html>

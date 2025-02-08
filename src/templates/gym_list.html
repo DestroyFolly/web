@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма с данными</title>
+</head>
+<body>
+    <h1>Список залов</h1>
+    <ul>
+        {% for item in data %}
+            <li>Address: {{item.adress}},  Phone number: {{item.phone}},  Work hours: {{item.work_hours}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

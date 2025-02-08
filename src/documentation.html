@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документация Web2024</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        header {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 10%;
+            text-align: center;
+        }
+        main {
+            padding: 20px 10%;
+        }
+        h1, h2 {
+            color: #007bff;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #dee2e6;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .highlight {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-left: 5px solid #007bff;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #343a40;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Документация проекта Web2024</h1>
+        <p>Описание функционала и целей приложения для фитнес-клуба</p>
+    </header>
+    <main>
+        <h2>Название проекта</h2>
+        <p>Приложение фитнес-клуба</p>
+
+        <h2>Краткое описание идеи проекта</h2>
+        <p>Приложение для клиентов фитнес-клуба. Разрабатываемый программный продукт позволяет клиентам фитнес-клуба записаться на тренировку к тренеру, изучить тренировки и входящие в них упражнения.</p>
+
+        <h2>Краткое обоснование целесообразности и актуальности проекта</h2>
+        <div class="highlight">
+            <p><strong>1.</strong> Забота о здоровье. Сегодня все больше людей осознают важность здорового образа жизни.</p>
+            <p><strong>2.</strong> Популярность спорта. Фитнес-клубы предоставляют возможность заниматься спортом и улучшать физическую форму.</p>
+            <p><strong>3.</strong> Тренд на красоту и фитнес. Эстетические и физические параметры становятся важными для современного общества.</p>
+        </div>
+
+        <h2>Краткое описание акторов</h2>
+        <table>
+            <tr>
+                <th>Роль</th>
+                <th>Описание</th>
+            </tr>
+            <tr>
+                <td><strong>Гость</strong></td>
+                <td>Посещает приложение без регистрации. Может просматривать информацию, но без доступа к персонализированным функциям.</td>
+            </tr>
+            <tr>
+                <td><strong>Авторизованный клиент</strong></td>
+                <td>Имеет учетную запись, может записываться на тренировки, выбирать тренеров и управлять своими данными.</td>
+            </tr>
+            <tr>
+                <td><strong>Тренер</strong></td>
+                <td>Управляет тренировками, создает и редактирует расписание.</td>
+            </tr>
+            <tr>
+                <td><strong>Администратор</strong></td>
+                <td>Управляет системой, учетными записями и общим функционалом приложения.</td>
+            </tr>
+        </table>
+
+        <h2>Use-Case - диаграмма</h2>
+        <img src="/git/schemes/use-case.png" alt="Диаграмма использования приложения">
+
+        <h2>Формализация ключевых бизнес-процессов</h2>
+        <img src="/git/schemes/bl.png" alt="Бизнес-процессы">
+
+        <h2>Пользовательские сценарии</h2>
+        <ol>
+            <li>Сценарий просмотра каталога</li>
+            <li>Сценарий входа в личный кабинет</li>
+            <li>Сценарий выбора тренера</li>
+            <li>Сценарий выбора тренировки</li>
+        </ol>
+
+        <h2>ER-диаграмма сущностей</h2>
+        <img src="/git/schemes/er.png" alt="ER-диаграмма">
+
+        <h2>Диаграмма базы данных</h2>
+        <img src="/git/schemes/DB_scheme.png" alt="Диаграмма базы данных">
+
+        <h2>Компонентная диаграмма системы</h2>
+        <img src="/git/schemes/top_level_components.png" alt="Компонентная диаграмма">
+
+        <h2>Макет создаваемого Web-приложения</h2>
+        <img src="/git/maket/1.png" alt="Макет 1">
+        <img src="/git/maket/2.png" alt="Макет 2">
+        <img src="/git/maket/3.png" alt="Макет 3">
+        <img src="/git/maket/4.png" alt="Макет 4">
+        <img src="/git/maket/5.png" alt="Макет 5">
+        <img src="/git/maket/6.png" alt="Макет 6">
+        <img src="/git/maket/7.png" alt="Макет 7">
+    </main>
+    <footer>
+        <p>Проект выполнен: Маслюков Павел, студент ИУ7-72Б</p>
+    </footer>
+</body>
+</html>
