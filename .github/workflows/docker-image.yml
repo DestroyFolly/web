@@ -25,19 +25,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./src/requirements.txt  # Install deps before building image
 
-      - name: Build and tag Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${GITHUB_SHA }} .  # Tag with commit SHA
-        working-directory: . # Important: Dockerfile in root
-
-      - name: Log in to Docker Registry
-        run: |
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} ${{ secrets.DOCKER_REGISTRY }}
-
-      - name: Push Docker image
-        run: |
-          docker push ${{ secrets.DOCKER_REGISTRY }}/${{ github.repository }}:${GITHUB_SHA }}
-
   unit_tests:
     name: Unit Tests
     runs-on: ubuntu-latest
