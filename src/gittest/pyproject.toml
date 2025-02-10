@@ -1,0 +1,175 @@
+[tool.poetry]
+name = "marketplace"
+version = "0.1.0"
+description = ""
+authors = ["Matvey <kozhevnikov12345matvey@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pytest = "^8.3.3"    # проверьте на дублирование
+pytest-xdist = "^3.6.1"  # проверьте на дублирование
+sqlalchemy = "^2.0.36"
+pydantic = "^2.9.2"
+dynaconf = "^3.2.6"
+fastapi = "^0.115.4"
+httpx = "^0.27.2"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.24.0"
+allure-pytest = "^2.13.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+
+
+[tool.ruff]
+unfixable = [
+    "ERA", # do not autoremove commented out code
+]
+target-version = "py311"
+line-length = 120
+extend-select = [
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "ERA", # flake8-eradicate/eradicate
+    "I",   # isort
+    "N",   # pep8-naming
+    "PIE", # flake8-pie
+    "PGH", # pygrep
+    "RUF", # ruff checks
+    "SIM", # flake8-simplify
+    "TCH", # flake8-type-checking
+    "TID", # flake8-tidy-imports
+    "UP"   # pyupgrade
+]
+ignore = [
+    "B904",   # use 'raise ... from err'
+    "B905",   # use explicit 'strict=' parameter with 'zip()'
+    "N818",   # Exception name should be named with an Error suffix
+    "RUF006", # disable this check until migrated to 3.11 class asyncio.TaskGroup
+    "UP035",  # use typing instead collections.abc
+    "TCH001"  # disable cause it moves import of pydentic models into type-checking block
+]
+extend-exclude = [
+    "config/*", "data/*", "proto/*", "reports/*"
+]
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.isort]
+force-single-line = true
+lines-between-types = 1
+lines-after-imports = 2
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.pylint]
+max-args = 5
+
+[tool.ruff.flake8-type-checking]
+exempt-modules = ["typing", "typing_extensions"]
+
+
+
+
+
+[tool.mypy]
+plugins = [
+"pydantic.mypy"
+]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+no_implicit_reexport = true
+ignore_missing_imports = true
+
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[[tool.mypy.overrides]]
+module = [
+    "dynaconf",
+    "keycloak",
+    "scipy.*",
+    "prometheus_api_client",
+    "grpc",
+    "clearml",
+    "matplotlib",
+    "yaml",
+    "atlassian",
+    "urllib3.*",
+    "requests.exceptions",
+    "google.protobuf.*",
+    "requests.*",
+    "kubernetes.*",
+    "tritonclient.*",
+    "aiohttp.*",
+    "pandas",
+    "tqdm.*",
+    "sklearn.*",
+    "lxml.*",
+    "allure.*",
+    "unittest.*"
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "src.proto_source.*"
+]
+disable_error_code = [
+    "attr-defined",
+    "name-defined",
+    "import",
+    "no-untyped-def",
+    "arg-type",
+    "type-arg",
+    "var-annotated",
+    "misc"
+]
+
+
+
+[database]
+sybd_name = "postgresql"
+host = "127.0.0.1"
+username = "postgres"
+password = "314151"
+username1 = "readonly_user"
+password1 = "password"
+username2 = "repl"
+password2 = "1"
+port2 = "5432"
+port = "5432"
+name = "Bd"
+name2 = "Bd"
+test_name = "test"
+pool_timeout = 10
+
+
+
+[app]
+app_host = "127.0.0.1"
+app_port = 5000
+is_debug = true
+
+
+
+[logger_settings]
+level = "logging.ERROR"
+filename = "./marketplace/Logger/marketplace.log"
+filemode = "w"
+format = "Module: %(pathname)s; Time: %(asctime)s;  Level: %(levelname)s;  Message: %(message)s."
+

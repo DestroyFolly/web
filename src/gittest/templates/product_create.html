@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Создать товар</title>
+</head>
+<body>
+    <h2>Данные о товаре:</h2>
+  <form action="/create_product/{{seller_id}}" method="post">
+    <label for="title">Введите название товара:</label>
+    <input type="text" id="title" name="title" required autofocus>
+    <label for="price">Введите стоимость товара:</label>
+    <input type="text" id="price" name="price" required>
+    <label for="rate">Введите рейтинг товара:</label>
+    <input type="text" id="rate" name="rate" required>
+    <button type="submit">Создать товар</button>
+  </form>
+</body>
+</html>

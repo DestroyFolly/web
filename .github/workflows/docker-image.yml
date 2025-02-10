@@ -32,7 +32,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          cd ../testing/test/src/tests
+          cd src/gittest/tests
           if [[ "${{ inputs.parallel }}" == "true" ]]; then
             pytest -n auto --alluredir=allure-results user_tests.py product_tests.py product_cart_tests.py product_order_tests.py payment_tests.py order_tests.py cart_tests.py
           else

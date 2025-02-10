@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: on-failure
+    environment:
+      POSTGRES_DB: Db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - ./sql/1-creation.sql:/docker-entrypoint-initdb.d/1-creation.sql
+      - ./sql/2-impose_restrictions.sql:/docker-entrypoint-initdb.d/2-impose_restrictions.sql
+      - ./sql/3-set_values.sql:/docker-entrypoint-initdb.d/3-set_values.sql
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=Db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD="postgres"
+    links:
+      - postgres
+    restart: on-failure
+volumes:
+  db-data:

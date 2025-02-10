@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Удалить пользователя</title>
+</head>
+<body>
+    <h2>Укажите необходимую информацию:</h2>
+    <form action="/delete_user" method="post">
+        <label for="user_id">Введите ID пользователя:</label>
+        <input type="number" id="user_id" name="user_id" required autofocus>
+        <button type="submit">Удалить пользователя</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Удалить оплату</title>
+</head>
+<body>
+    <h2>Укажите необходимую информацию:</h2>
+    <form action="/delete_payment" method="post">
+        <label for="payment_id">Введите ID оплаты:</label>
+        <input type="number" id="payment_id" name="payment_id" required autofocus>
+        <button type="submit">Удалить оплату</button>
+    </form>
+</body>
+</html>

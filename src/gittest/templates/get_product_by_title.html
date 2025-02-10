@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Товар по названию</title>
+</head>
+<body>
+    <h2>Укажите необходимую информацию:</h2>
+    <form action="/get_product_by_title" method="post">
+        <label for="title">Введите название товара:</label>
+        <input type="text" id="title" name="title" required autofocus>
+        <button type="submit">Получить товар</button>
+    </form>
+</body>
+</html>

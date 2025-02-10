@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en, ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Товары</title>
+</head>
+<body>
+    <button onclick="location.href='/get_product_by_id'">Найти товар по ID</button>
+    <button onclick="location.href='/get_product_by_title'">Найти товар по названию</button>
+    <button onclick="location.href='/get_seller_products/{{user_id}}'">Получить все свои товары</button>
+    <button onclick="location.href='/get_all_products'">Получить все товары в маркетплейсе</button>
+    <button onclick="location.href='/create_product/{{user_id}}'">Создать товар</button>
+    <button onclick="location.href='/delete_product/{{user_id}}'">Удалить товар</button>
+    <button onclick="location.href='/update_product/{{user_id}}'">Обновить товар</button>
+</body>
+</html>
