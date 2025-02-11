@@ -13,7 +13,7 @@ on:
 
 jobs:
   unit_tests:
-    name: Unit Tests
+    name: fitness-app
     runs-on: ubuntu-latest
 
     steps:
@@ -74,9 +74,9 @@ jobs:
         run: |
           cd src/gittest/tests
           if [[ "${{ inputs.parallel }}" == "true" ]]; then
-            pytest -n auto --alluredir=allure-results user_tests.py product_tests.py product_cart_tests.py product_order_tests.py payment_tests.py order_tests.py cart_tests.py
+            pytest -n 
           else
-            pytest --alluredir=allure-results user_tests.py product_tests.py product_cart_tests.py product_order_tests.py payment_tests.py order_tests.py cart_tests.py
+            pytest 
           fi
 
       - name: Stop and remove containers
