@@ -61,19 +61,6 @@ jobs:
             -p 8009:8009 \
             backend-image uvicorn app:app --host 0.0.0.0 --port 8009
 
-      - name: Wait for Backend to be ready
-        run: |
-          for i in {1..30}; do
-            if curl -sSf http://localhost:8009/docs > /dev/null; then
-              echo "Backend is ready!"
-              exit 0
-            fi
-            echo "Waiting for backend..."
-            sleep 5
-          done
-          echo "Backend did not become ready in time" >&2
-          exit 1
-
       - name: Start Frontend
         run: |
           docker build -t frontend-image ./front
@@ -82,19 +69,6 @@ jobs:
             -e VITE_API_URL=http://backend:8009 \
             -p 5173:5173 \
             frontend-image npm start
-
-      - name: Wait for Frontend to be ready
-        run: |
-          for i in {1..30}; do
-            if curl -sSf http://localhost:5173 > /dev/null; then
-              echo "Frontend is ready!"
-              exit 0
-            fi
-            echo "Waiting for frontend..."
-            sleep 5
-          done
-          echo "Frontend did not become ready in time" >&2
-          exit 1
 
       - name: Run unit tests
         run: |
