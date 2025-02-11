@@ -1,0 +1,40 @@
+version: '3.3'
+
+services:
+  # PostgreSQL Database for coursework
+  postgres_coursework:
+    image: postgres:15
+    container_name: postgres_coursework
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: coursework
+    ports:
+      - "5432:5432"  # Открываем порт базы данных
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend service - Python FastAPI with Uvicorn
+  backend:
+    build: ./src  # Путь к папке с кодом бэкенда
+    container_name: backend
+    ports:
+      - "8009:8009"  # Открываем порт для бэкенда
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres_coursework:5432/coursework  
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8009"]
+
+  # Frontend service - Node.js with npm start
+  frontend:
+    build: ./front  # Путь к папке с фронтендом
+    container_name: frontend
+    ports:
+      - "5173:5173"  # Открываем порт для фронтенда
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://backend:8009  # Указываем адрес бэкенда для фронтенда
+    command: ["npm", "start"]  # Запуск фронтенда
+

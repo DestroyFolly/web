@@ -11,11 +11,11 @@ on:
         default: 'false'
         type: boolean
 
-
 jobs:
   unit_tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,6 +30,72 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./src/requirements.txt
 
+      - name: Start PostgreSQL
+        run: |
+          docker run -d --name postgres_coursework \
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD=postgres \
+            -e POSTGRES_DB=coursework \
+            -p 5432:5432 \
+            postgres:15
+
+      - name: Wait for PostgreSQL to be ready
+        run: |
+          for i in {1..30}; do
+            if docker exec postgres_coursework pg_isready -U postgres; then
+              echo "PostgreSQL is ready!"
+              exit 0
+            fi
+            echo "Waiting for PostgreSQL..."
+            sleep 5
+          done
+          echo "PostgreSQL did not become ready in time" >&2
+          exit 1
+
+      - name: Start Backend
+        run: |
+          docker build -t backend-image ./src
+          docker run -d --name backend \
+            --link postgres_coursework:postgres_coursework \
+            -e DATABASE_URL=postgresql://postgres:postgres@postgres_coursework:5432/coursework \
+            -p 8009:8009 \
+            backend-image uvicorn app:app --host 0.0.0.0 --port 8009
+
+      - name: Wait for Backend to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:8009/docs > /dev/null; then
+              echo "Backend is ready!"
+              exit 0
+            fi
+            echo "Waiting for backend..."
+            sleep 5
+          done
+          echo "Backend did not become ready in time" >&2
+          exit 1
+
+      - name: Start Frontend
+        run: |
+          docker build -t frontend-image ./front
+          docker run -d --name frontend \
+            -e NODE_ENV=development \
+            -e VITE_API_URL=http://backend:8009 \
+            -p 5173:5173 \
+            frontend-image npm start
+
+      - name: Wait for Frontend to be ready
+        run: |
+          for i in {1..30}; do
+            if curl -sSf http://localhost:5173 > /dev/null; then
+              echo "Frontend is ready!"
+              exit 0
+            fi
+            echo "Waiting for frontend..."
+            sleep 5
+          done
+          echo "Frontend did not become ready in time" >&2
+          exit 1
+
       - name: Run unit tests
         run: |
           cd src/gittest/tests
@@ -38,3 +104,8 @@ jobs:
           else
             pytest --alluredir=allure-results user_tests.py product_tests.py product_cart_tests.py product_order_tests.py payment_tests.py order_tests.py cart_tests.py
           fi
+
+      - name: Stop and remove containers
+        run: |
+          docker stop frontend backend postgres_coursework
+          docker rm frontend backend postgres_coursework
