@@ -72,7 +72,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          cd src/gittest/tests
+          cd src
           if [[ "${{ inputs.parallel }}" == "true" ]]; then
             pytest -n 
           else
